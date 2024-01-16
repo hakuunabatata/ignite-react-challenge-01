@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './App.css'
+import Logo from './assets/logo.svg'
+import { FiTrash } from 'react-icons/fi'
+import { FiPlusCircle } from 'react-icons/fi'
 
 function App() {
   const [todos, setTodos] = useState<string[]>(['aaa'])
@@ -18,6 +21,11 @@ function App() {
 
   return (
     <>
+      <img
+        className='logo'
+        src={Logo}
+        alt='Todo'
+      />
       <input
         type='text'
         value={value}
@@ -27,13 +35,15 @@ function App() {
         onClick={addTodo}
         disabled={!value || todos.includes(value)}
       >
-        Add
+        <FiPlusCircle />
       </button>
       <div>
         {todos.map((todo, index) => (
           <>
             <div key={index}>{todo}</div>
-            <button onClick={() => removeTodo(index)}>Remove</button>
+            <button onClick={() => removeTodo(index)}>
+              <FiTrash />
+            </button>
           </>
         ))}
       </div>
