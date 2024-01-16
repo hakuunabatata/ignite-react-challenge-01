@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import Logo from './assets/logo.svg'
 import { FiTrash } from 'react-icons/fi'
 import { FiPlusCircle } from 'react-icons/fi'
+import { Header } from './components/Header'
 
 function App() {
   const [todos, setTodos] = useState<string[]>(['aaa'])
@@ -21,11 +21,7 @@ function App() {
 
   return (
     <>
-      <img
-        className='logo'
-        src={Logo}
-        alt='Todo'
-      />
+      <Header />
       <input
         type='text'
         value={value}
