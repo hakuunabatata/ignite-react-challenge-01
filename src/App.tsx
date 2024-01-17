@@ -1,42 +1,57 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Header, Search, Todo } from './components'
+import { Task } from './types'
+
 import './App.css'
-import { FiTrash } from 'react-icons/fi'
-import { Header } from './components/Header'
-import { Search } from './components'
 
 function App() {
-  const [todos, setTodos] = useState<string[]>(['aaa'])
-  const [value, setValue] = useState('')
+  const [tasks, setTasks] = useState<Task[]>([])
+  const [task, setTask] = useState('')
+  const [hideButton, setHideButton] = useState(false)
 
-  const addTodo = () => {
-    if (!!value && !todos.includes(value)) {
-      setTodos(prev => [...prev, value])
-      setValue('')
+  const addTask = () => {
+    if (!!task && !tasks.map(t => t.task).includes(task)) {
+      setTasks(prev => [...prev, { task, finished: false }])
+      setTask('')
     }
   }
 
-  const removeTodo = (index: number) => {
-    setTodos(prev => prev.filter((_, idx) => idx !== index))
+  const removeTask = (index: number) => {
+    setTasks(prev => prev.filter((_, idx) => idx !== index))
   }
+
+  const finishTask = (index: number) => {
+    setTasks(prev =>
+      prev.map((item, idx) =>
+        idx === index
+          ? { task: item.task, finished: !item.finished }
+          : item,
+      ),
+    )
+  }
+
+  useEffect(() => {
+    setHideButton(!task || tasks.map(t => t.task).includes(task))
+  }, [tasks, task])
 
   return (
     <>
       <Header />
       <Search
-        hideButton={!value || todos.includes(value)}
-        onSubmit={addTodo}
-        onChange={setValue}
-        value={value}
+        hideButton={hideButton}
+        onSubmit={addTask}
+        onChange={setTask}
+        value={task}
       />
 
       <div>
-        {todos.map((todo, index) => (
-          <>
-            <div key={index}>{todo}</div>
-            <button onClick={() => removeTodo(index)}>
-              <FiTrash />
-            </button>
-          </>
+        {tasks.map((item, index) => (
+          <Todo
+            key={index}
+            item={item}
+            onRemove={() => removeTask(index)}
+            onFinish={() => finishTask(index)}
+          />
         ))}
       </div>
     </>

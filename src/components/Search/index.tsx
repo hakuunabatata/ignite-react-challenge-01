@@ -21,7 +21,7 @@ export const Search = ({
   }
   return (
     <form
-      className='container'
+      className='searchContainer'
       onSubmit={submitForm}
     >
       <input
