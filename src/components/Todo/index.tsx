@@ -1,28 +1,26 @@
 import {
-  FiTrash2 as TrashIcon,
-  FiCheck as CheckIcon,
-} from 'react-icons/fi'
+  FaTrashAlt as TrashIcon,
+  FaCheck as CheckIcon,
+} from 'react-icons/fa'
 import { Task } from '../../types'
-import './styles.css'
+import './style.css'
 
 interface Props {
   item: Task
   onRemove: () => void
-  onFinish: () => void
+  onEnd: () => void
 }
 
-export const Todo = ({ item, onRemove, onFinish }: Props) => {
+export const Todo = ({ item, onRemove, onEnd }: Props) => {
   return (
     <div className='todoContainer'>
       <button
-        className={
-          item.finished ? 'todoCheckboxChecked' : 'todoCheckbox'
-        }
-        onClick={onFinish}
+        className={item.done ? 'todoCheckboxChecked' : 'todoCheckbox'}
+        onClick={onEnd}
       >
-        {item.finished && <CheckIcon />}
+        {item.done && <CheckIcon />}
       </button>
-      <div className={item.finished ? 'finishedTitle' : 'todoTitle'}>
+      <div className={item.done ? 'doneTitle' : 'todoTitle'}>
         {item.task}
       </div>
       <button

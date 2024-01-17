@@ -1,0 +1,62 @@
+.infoContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0px;
+  gap: 450px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+
+  width: 736px;
+  height: 19px;
+}
+
+.infoTextContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+
+  margin: 0 auto;
+  width: 139px;
+  height: 19px;
+}
+
+.createdText {
+  width: 106px;
+  height: 17px;
+
+  color: #4ea8de;
+}
+
+.infoNumber {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 8px;
+  gap: 10px;
+
+  width: 25px;
+  height: 19px;
+
+  background: #333333;
+  border-radius: 999px;
+
+  width: 9px;
+  height: 15px;
+  color: #d9d9d9;
+}
+
+.doneText {
+  width: 106px;
+  height: 17px;
+
+  color: #8284fa;
+}

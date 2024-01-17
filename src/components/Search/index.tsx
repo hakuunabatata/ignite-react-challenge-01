@@ -1,18 +1,18 @@
 import { FormEvent } from 'react'
-import { FiPlusCircle } from 'react-icons/fi'
-import './styles.css'
+import { FaPlus as PlusIcon } from 'react-icons/fa'
+import './style.css'
 
 interface Props {
   onSubmit: () => void
   onChange: (value: string) => void
-  hideButton: boolean
+  disabled: boolean
   value: string
 }
 
 export const Search = ({
   onChange,
   value,
-  hideButton,
+  disabled,
   onSubmit,
 }: Props) => {
   const submitForm = (event: FormEvent<HTMLFormElement>) => {
@@ -31,16 +31,14 @@ export const Search = ({
         value={value}
         onChange={e => onChange(e.target.value)}
       />
-      {!hideButton && (
-        <button
-          type='submit'
-          className='addButton'
-          // onClick={onClick}
-        >
-          Criar
-          <FiPlusCircle />
-        </button>
-      )}
+      <button
+        type='submit'
+        className='addButton'
+        disabled={disabled}
+      >
+        Criar
+        <PlusIcon />
+      </button>
     </form>
   )
 }

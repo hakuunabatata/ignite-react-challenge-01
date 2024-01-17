@@ -1,0 +1,60 @@
+.listContainer {
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+
+  position: absolute;
+  width: 736px;
+  height: 287px;
+  left: calc(50% - 736px / 2);
+  top: 291px;
+}
+
+.emptyContainer {
+  color: #808080;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  border-top: 1px #262626;
+
+  box-sizing: border-box;
+  padding: 64px 24px;
+  gap: 16px;
+
+  width: 736px;
+  height: 244px;
+  border-top: 1px solid #333333;
+  border-radius: 8px;
+}
+
+.emptyText {
+  width: 688px;
+  height: 44px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  /* font-weight: 700; */
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+  text-align: center;
+
+  /* Gray 300 */
+  color: #808080;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.emptyContainer > svg {
+  height: 56px;
+  width: 56px;
+}

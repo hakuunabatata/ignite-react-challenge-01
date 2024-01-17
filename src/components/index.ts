@@ -1,3 +1,5 @@
 export * from './Header'
+export * from './Info'
+export * from './List'
 export * from './Search'
 export * from './Todo'

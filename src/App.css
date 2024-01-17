@@ -4,3 +4,10 @@
   padding: 2rem;
   text-align: center;
 }
+
+.container {
+  background-color: #1a1a1a;
+  /* position: absolute; */
+  height: 100%;
+  width: 100%;
+}

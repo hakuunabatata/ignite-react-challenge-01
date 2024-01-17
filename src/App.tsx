@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Header, Search, Todo } from './components'
+import { Header, List, Search } from './components'
 import { Task } from './types'
 
 import './App.css'
@@ -11,7 +11,7 @@ function App() {
 
   const addTask = () => {
     if (!!task && !tasks.map(t => t.task).includes(task)) {
-      setTasks(prev => [...prev, { task, finished: false }])
+      setTasks(prev => [...prev, { task, done: false }])
       setTask('')
     }
   }
@@ -20,12 +20,10 @@ function App() {
     setTasks(prev => prev.filter((_, idx) => idx !== index))
   }
 
-  const finishTask = (index: number) => {
+  const endTask = (index: number) => {
     setTasks(prev =>
       prev.map((item, idx) =>
-        idx === index
-          ? { task: item.task, finished: !item.finished }
-          : item,
+        idx === index ? { task: item.task, done: !item.done } : item,
       ),
     )
   }
@@ -35,26 +33,21 @@ function App() {
   }, [tasks, task])
 
   return (
-    <>
+    <div className='container'>
       <Header />
       <Search
-        hideButton={hideButton}
+        disabled={hideButton}
         onSubmit={addTask}
         onChange={setTask}
         value={task}
       />
 
-      <div>
-        {tasks.map((item, index) => (
-          <Todo
-            key={index}
-            item={item}
-            onRemove={() => removeTask(index)}
-            onFinish={() => finishTask(index)}
-          />
-        ))}
-      </div>
-    </>
+      <List
+        tasks={tasks}
+        onRemove={removeTask}
+        onEnd={endTask}
+      />
+    </div>
   )
 }
 
