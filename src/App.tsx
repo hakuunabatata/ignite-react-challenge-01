@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import './App.css'
 import { FiTrash } from 'react-icons/fi'
-import { FiPlusCircle } from 'react-icons/fi'
 import { Header } from './components/Header'
+import { Search } from './components'
 
 function App() {
   const [todos, setTodos] = useState<string[]>(['aaa'])
   const [value, setValue] = useState('')
 
   const addTodo = () => {
-    if (!todos.includes(value)) {
+    if (!!value && !todos.includes(value)) {
       setTodos(prev => [...prev, value])
       setValue('')
     }
@@ -22,17 +22,13 @@ function App() {
   return (
     <>
       <Header />
-      <input
-        type='text'
+      <Search
+        hideButton={!value || todos.includes(value)}
+        onSubmit={addTodo}
+        onChange={setValue}
         value={value}
-        onChange={e => setValue(e.target.value)}
       />
-      <button
-        onClick={addTodo}
-        disabled={!value || todos.includes(value)}
-      >
-        <FiPlusCircle />
-      </button>
+
       <div>
         {todos.map((todo, index) => (
           <>
